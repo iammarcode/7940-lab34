@@ -5,6 +5,15 @@ import configparser
 import logging
 import redis
 
+from ChatGPT_HKBU import HKBU_ChatGPT
+
+def equiped_chatgpt(update, context):
+    global chatgpt
+    reply_message = chatgpt.submit(update.message.text)
+    logging.info("Update: " + str(update))
+    logging.info("context: " + str(context))
+    context.bot.send_message(chat_id=update.effective_chat.id, text=reply_message)
+
 global redis1
 def main():
     config = configparser.ConfigParser() 
@@ -22,8 +31,14 @@ def main():
 
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.INFO)
 
-    echo_handler = MessageHandler(Filters.text & ( ~Filters.command), echo) 
-    dispatcher.add_handler(echo_handler)
+    # echo_handler = MessageHandler(Filters.text & ( ~Filters.command), echo) 
+    # dispatcher.add_handler(echo_handler)
+    # dispatcher for chatgpt
+    global chatgpt
+    chatgpt = HKBU_ChatGPT(config)
+    chatgpt_handler = MessageHandler(Filters.text & (~Filters.command), equiped_chatgpt)
+    dispatcher.add_handler(chatgpt_handler)
+
 
     # on different commands - answer in Telegram
     dispatcher.add_handler(CommandHandler("add", add))
