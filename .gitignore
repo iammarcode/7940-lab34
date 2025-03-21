@@ -1,1 +1,14 @@
+# Confidentials
 config.ini
+
+# Python-specific
+__pycache__/
+
+# IDEs and editors
+.vscode/
+
+# macOS-specific
+.DS_Store
+
+# Test case
+test_redis.py
