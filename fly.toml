@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for chatbot-24400912 on 2025-03-21T14:38:46+08:00
+# fly.toml app configuration file generated for chatbot-24400912-holy-violet-775 on 2025-03-21T14:46:08+08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'chatbot-24400912'
+app = 'chatbot-24400912-holy-violet-775'
 primary_region = 'hkg'
 
 [build]
